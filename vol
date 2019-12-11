@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+
+import subprocess
+import sys
+
+if len(sys.argv) > 1:
+    subprocess.check_output("amixer sset 'PCM' {}%".format(sys.argv[1]), shell=True)
+else:
+    print(subprocess.check_output("amixer get 'PCM' | grep '%'", shell=True).split()[3].strip('[]'))
